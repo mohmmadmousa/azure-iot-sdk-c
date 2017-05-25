@@ -300,20 +300,18 @@ IF(WIN32)
     add_definitions(-DGB_MEASURE_MEMORY_FOR_THIS -DGB_DEBUG_ALLOC)
 ENDIF(WIN32)
 
-if(${build_as_dynamic})
-    add_library(iothub_client SHARED
-        ${iothub_client_c_files} 
-        ${iothub_client_h_files}
-        ./src/iothub_client.def
-    )
-    target_link_libraries(iothub_client ${iothub_client_libs})
+add_library(iothub_client_dll SHARED
+    ${iothub_client_c_files} 
+    ${iothub_client_h_files}
+    ./src/iothub_client.def
+)
+target_link_libraries(iothub_client_dll ${iothub_client_libs})
 
-else()
-    add_library(iothub_client
-        ${iothub_client_c_files} 
-        ${iothub_client_h_files}
-    )
-endif()
+add_library(iothub_client
+    ${iothub_client_c_files} 
+    ${iothub_client_h_files}
+)
+target_link_libraries(iothub_client ${iothub_client_libs})
 
 linkSharedUtil(iothub_client)
 set(iothub_client_libs
