@@ -5,6 +5,9 @@
 build_root=$(cd "$(dirname "$0")/.." && pwd)
 cd $build_root
 
+CMAKE_BUILD_TYPE=Debug
+export CMAKE_BUILD_TYPE
+
 # -- C --
 ./build_all/linux/build.sh --run-unittests --run-e2e-tests --wip-use-c2d-amqp-methods "$@" #-x 
 [ $? -eq 0 ] || exit $?
