@@ -1788,7 +1788,6 @@ static void DisconnectFromClient(PMQTTTRANSPORT_HANDLE_DATA transport_data)
 static int InitializeConnection(PMQTTTRANSPORT_HANDLE_DATA transport_data)
 {
     int result = 0;
-    LogInfo("InitializeConnection\n");
 
     // Make sure we're not destroying the object
     if (!transport_data->isDestroyCalled)
