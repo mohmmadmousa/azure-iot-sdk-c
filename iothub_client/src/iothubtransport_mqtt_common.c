@@ -1827,7 +1827,7 @@ static int InitializeConnection(PMQTTTRANSPORT_HANDLE_DATA transport_data)
             }
             else if ((current_time - transport_data->mqtt_connect_time) / 1000 > transport_data->keepAliveValue) 
             {
-                LogInfo("start = %d, now = %d, delta = %d\n", current_time, transport_data->mqtt_connect_time, (current_time - transport_data->mqtt_connect_time) / 1000);
+                LogInfo("start = %d, now = %d, delta = %d\n", transport_data->mqtt_connect_time, current_time, (current_time - transport_data->mqtt_connect_time) / 1000);
                 LogError("mqtt_client timed out waiting for CONNACK");
                 
                 DisconnectFromClient(transport_data);
