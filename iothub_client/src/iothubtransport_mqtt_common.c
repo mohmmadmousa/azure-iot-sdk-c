@@ -1788,7 +1788,6 @@ static void DisconnectFromClient(PMQTTTRANSPORT_HANDLE_DATA transport_data)
 static int InitializeConnection(PMQTTTRANSPORT_HANDLE_DATA transport_data)
 {
     int result = 0;
-    static bool once = true;
 
     // Make sure we're not destroying the object
     if (!transport_data->isDestroyCalled)
@@ -1826,9 +1825,8 @@ static int InitializeConnection(PMQTTTRANSPORT_HANDLE_DATA transport_data)
                 LogError("failed verifying MQTT_CLIENT_STATUS_CONNECTING timeout");
                 result = __FAILURE__;
             }
-            else if (once || ((current_time - transport_data->mqtt_connect_time) / 1000 > transport_data->keepAliveValue))
+            else if ((current_time - transport_data->mqtt_connect_time) / 1000 > transport_data->keepAliveValue)
             {
-                once = false;
                 LogInfo("start = %d, now = %d, delta = %d\n", transport_data->mqtt_connect_time, current_time, (current_time - transport_data->mqtt_connect_time) / 1000);
                 LogError("mqtt_client timed out waiting for CONNACK");
                 
