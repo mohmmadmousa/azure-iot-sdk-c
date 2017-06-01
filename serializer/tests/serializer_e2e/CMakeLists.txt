@@ -29,7 +29,7 @@ set(${theseTestsName}_h_files
 include_directories(${IOTHUB_TEST_INC_FOLDER} ${IOTHUB_CLIENT_INC_FOLDER} ${SERIALIZER_INC_FOLDER})
 include_directories(${IOTHUB_SERVICE_CLIENT_INC_FOLDER})
 
-file(COPY ../global_valgrind_suppression.supp DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ../../../iothub_client/tests/global_valgrind_suppression.supp DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 build_c_test_artifacts(${theseTestsName} ON "tests/E2ETests" VALGRIND_SUPPRESSIONS_FILE global_valgrind_suppression.supp)
 
 if(WIN32)
